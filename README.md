@@ -325,6 +325,38 @@ auto-judge-evaluate meta-evaluate \
 - [minima-llm](https://github.com/trec-auto-judge/minima-llm) -- LLM integration
 - [DSPy](https://github.com/stanfordnlp/dspy) -- structured prediction
 
+## Submission to TIRA
+
+```
+export OPENAI_API_KEY=...
+export OPENAI_BASE_URL=...
+export OPENAI_MODEL=...
+
+tira-cli code-submission \
+	--dry-run \
+	--path . \
+	--forward-environment-variable OPENAI_API_KEY OPENAI_BASE_URL OPENAI_MODEL \
+	--task trec-auto-judge \
+	--dataset kiddie-20260403-training \
+	--command 'auto-judge run --workflow /auto-judge/judges/queryonly/workflow.yml --rag-responses $inputDataset/runs/*/ --rag-topics $inputDataset/topics/*.jsonl --out-dir $outputDir'
+
+tira-cli code-submission \
+	--dry-run \
+	--path . \
+	--forward-environment-variable OPENAI_API_KEY OPENAI_BASE_URL OPENAI_MODEL \
+	--task trec-auto-judge \
+	--dataset kiddie-20260403-training \
+	--command 'auto-judge run --workflow /auto-judge/judges/grounded/workflow.yml --rag-responses $inputDataset/runs/*/ --rag-topics $inputDataset/topics/*.jsonl --out-dir $outputDir'
+	
+tira-cli code-submission \
+	--dry-run \
+	--path . \
+	--forward-environment-variable OPENAI_API_KEY OPENAI_BASE_URL OPENAI_MODEL \
+	--task trec-auto-judge \
+	--dataset kiddie-20260403-training \
+	--command 'auto-judge run --workflow /auto-judge/judges/prefnugget/workflow.yml --rag-responses $inputDataset/runs/*/ --rag-topics $inputDataset/topics/*.jsonl --out-dir $outputDir'
+```
+
 ## License
 
 MIT
