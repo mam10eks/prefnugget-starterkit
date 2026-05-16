@@ -9,6 +9,7 @@ RUN pip3 install uv
 
 ADD judges /auto-judge/judges
 ADD pyproject.toml /auto-judge/
+ADD .git /auto-judge/
 
 WORKDIR /auto-judge
 
