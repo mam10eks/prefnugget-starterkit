@@ -9,10 +9,10 @@ RUN pip3 install uv
 
 ADD judges /auto-judge/judges
 ADD pyproject.toml /auto-judge/
-ADD .git /auto-judge/
 
 WORKDIR /auto-judge
 
 RUN uv pip install --system -e .
+ADD .git /auto-judge/
 
 RUN python3 -c 'import nltk; nltk.download("stopwords"); nltk.download("punkt");'
